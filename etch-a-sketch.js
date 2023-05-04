@@ -1,12 +1,15 @@
 //Create function that makes new divs (or whatever will create a div)
 //append divs to container div
 
-let gridDiv = document.querySelector("#container");
+let gridDiv = document.querySelector(".container");
 
-function makeSquares(num) {
-   let square = document.createElement("div");
-   square.classList.add("square") //create in css
-   //square * (num * num)
-   //loop over them to container.appendChild(square) ?
-   //put them in an array to loop over?
+function makeGrid(num) {
+    for (let i = 0; i < (num*num); i++) {
+        let square = document.createElement("div");
+        square.classList.add("square");
+        gridDiv.appendChild(square);
+    } 
+    gridDiv.style.setProperty("grid-template-columns", `repeat(${num}, 1fr)`);
 }
+
+makeGrid(35)
