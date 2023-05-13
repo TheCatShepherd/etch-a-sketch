@@ -12,10 +12,22 @@ function makeGrid(num) {
     gridDiv.style.setProperty("grid-template-columns", `repeat(${num}, 1fr)`);
 }
 
-makeGrid(100)
+
+function clearGrid() {
+    while (gridDiv.firstChild) {
+        gridDiv.removeChild(gridDiv.firstChild);
+    }
+}
 
 document.addEventListener("mouseover", e => {
     if (e.target.matches("div.square")) {
         e.target.style.backgroundColor = "black"
     }
+})
+
+let button = document.querySelector("button");
+button.addEventListener('click', () => {
+    clearGrid();
+    let num = document.getElementById("gridNum").value;
+    makeGrid(num);
 })
