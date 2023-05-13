@@ -32,12 +32,19 @@ console.log(value)
 
 document.addEventListener("mouseover", e => {
     if (e.target.matches("div.square")) {
-        let red = Math.floor(Math.random() * (255) + 1);
-        let green = Math.floor(Math.random() * (255) + 1)
-        let blue = Math.floor(Math.random() * (255) + 1);
-        e.target.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+        e.target.style.backgroundColor = "black"
+        e.target.style.opacity -= '-0.1';
     }
 })
+
+/*document.addEventListener("mouseover", e => {
+    if (e.target.matches("div.square")) {
+        let red = Math.floor(Math.random() * (255));
+        let green = Math.floor(Math.random() * (255))
+        let blue = Math.floor(Math.random() * (255));
+        e.target.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+    }
+})*/
 
 //User input grid number
 let button = document.querySelector("button");
