@@ -1,5 +1,4 @@
 //Project etch-a-sketch
-//Create grid, whose squares will change color when moved over with mouse
 
 let gridDiv = document.querySelector(".container");
 
@@ -19,12 +18,28 @@ function clearGrid() {
     }
 }
 
-document.addEventListener("mouseover", e => {
+//Get value of color selection
+let select = document.getElementById("color");
+let value = select.options[select.selectedIndex].value;
+console.log(value)
+
+//Change square to black when mouse over
+/*document.addEventListener("mouseover", e => {
     if (e.target.matches("div.square")) {
         e.target.style.backgroundColor = "black"
     }
+})*/
+
+document.addEventListener("mouseover", e => {
+    if (e.target.matches("div.square")) {
+        let red = Math.floor(Math.random() * (255) + 1);
+        let green = Math.floor(Math.random() * (255) + 1)
+        let blue = Math.floor(Math.random() * (255) + 1);
+        e.target.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+    }
 })
 
+//User input grid number
 let button = document.querySelector("button");
 button.addEventListener('click', () => {
     clearGrid();
