@@ -9,47 +9,58 @@ function makeGrid(num) {
         gridDiv.appendChild(square);
     } 
     gridDiv.style.setProperty("grid-template-columns", `repeat(${num}, 1fr)`);
-}
+};
 
 
 function clearGrid() {
     while (gridDiv.firstChild) {
         gridDiv.removeChild(gridDiv.firstChild);
     }
-}
+};
 
-//Get value of color selection
-let select = document.getElementById("color");
-let value = select.options[select.selectedIndex].value;
-console.log(value)
 
-//Change square to black when mouse over
-/*document.addEventListener("mouseover", e => {
-    if (e.target.matches("div.square")) {
-        e.target.style.backgroundColor = "black"
+let colorBtns = document.querySelectorAll('button');
+let selectedButton = null;
+
+colorBtns.forEach((button) => {
+  button.addEventListener('click', () => {
+    if (selectedButton !== null) {
+      document.removeEventListener("mouseover", mouseOverHandler);
     }
-})*/
 
-document.addEventListener("mouseover", e => {
-    if (e.target.matches("div.square")) {
-        e.target.style.backgroundColor = "black"
-        e.target.style.opacity -= '-0.1';
-    }
-})
+    selectedButton = button;
 
-/*document.addEventListener("mouseover", e => {
-    if (e.target.matches("div.square")) {
-        let red = Math.floor(Math.random() * (255));
-        let green = Math.floor(Math.random() * (255))
-        let blue = Math.floor(Math.random() * (255));
-        e.target.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+    if (button.id == "black" ||
+        button.id == "progressive" ||
+        button.id == "rainbow") {
+            document.addEventListener("mouseover", mouseOverHandler);
+        }
+  });
+});
+
+function mouseOverHandler(e) {
+  if (e.target.matches("div.square")) {
+    if (selectedButton.id === "black") {
+      e.target.style.backgroundColor = "black";
+      e.target.style.opacity = "";
+    } else if (selectedButton.id === "progressive") {
+      e.target.style.backgroundColor = "black";
+      e.target.style.opacity -= '-0.1';
+    } else if (selectedButton.id === "rainbow") {
+      let red = Math.floor(Math.random() * 255);
+      let green = Math.floor(Math.random() * 255);
+      let blue = Math.floor(Math.random() * 255);
+      e.target.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+      e.target.style.opacity = "";
     }
-})*/
+  }
+};
+
 
 //User input grid number
-let button = document.querySelector("button");
-button.addEventListener('click', () => {
+let gridBtn = document.getElementById("gridBtn");
+gridBtn.addEventListener('click', () => {
     clearGrid();
     let num = document.getElementById("gridNum").value;
     makeGrid(num);
-})
+});
