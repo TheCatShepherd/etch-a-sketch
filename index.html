@@ -9,10 +9,23 @@
     <title>Etch-a-Sketch</title>
 </head>
 <body>
+    <section id="title">
+        <h1>Etch-a-Sketch</h1>
+        <p>Let your creativity run wild!</p>
+    </section>
     <section id="parameters">
-        <label for="gridNum">Number of squares</label>
-        <input id="gridNum" type="number" min="10" max="100" placeholder="10-100">
-        <button type="button">Create Grid</button>
+        <div class="grid">
+            <label for="gridNum">Number of squares</label>
+            <input id="gridNum" type="number" min="10" max="100" placeholder="10-100">
+            <button id="gridBtn">Create Grid</button> 
+        </div>
+   
+        <div class="dropdown">
+            <p>Choose a color:</p>
+                <button id="black">Black</button>
+                <button id="progressive">Progressive Black</button>
+                <button id="rainbow">Rainbow</button>
+        </div>
     </section>
     <section id="grid">
         <div class="container">
